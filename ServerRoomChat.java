@@ -22,7 +22,7 @@ public class ServerRoomChat extends UnicastRemoteObject implements IServerRoomCh
 
         @Override
 	public void createRoom(String roomName) throws RemoteException{
-            String ip = "192.168.1.4";
+            String ip = "192.168.1.3";
             String enderecoServidor = "rmi://"+ip+":2020/";
             RoomChat rc = new RoomChat();
             String url = enderecoServidor + roomName;
@@ -37,6 +37,7 @@ public class ServerRoomChat extends UnicastRemoteObject implements IServerRoomCh
             }
             
             roomList.put(roomName, rc);
+            System.out.println(roomList.size());
 	}
 
 }

@@ -20,12 +20,13 @@ public class UserChat extends UnicastRemoteObject implements IUserChat {
     
     @Override
     public void deliverMsg(String senderUsrName, String msg, int id, Integer[] clockMatrix) throws RemoteException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
-
+    
+    
     @Override
-    public void updtateUserList(TreeMap<String, IUserChat> userList) throws RemoteException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateUserList(TreeMap<String, IUserChat> userList) throws RemoteException{
+
     }
     
 }

@@ -18,17 +18,22 @@ import java.util.TreeMap;
 public class Teste {
     
     public static void main(String[] args) throws NotBoundException, MalformedURLException, RemoteException{
-        IUserChat uc = new UserChat();
+        UserChat uc = new UserChat();
         String name = "Leonardo";
         
-        String urlServer = "rmi://192.168.1.4:2020/Servidor";
+        String urlServer = "rmi://192.168.1.3:2020/Servidor";
         
         IServerRoomChat server = (IServerRoomChat) Naming.lookup(urlServer);
         server.createRoom("room");
         
         TreeMap<String, IRoomChat> rooms = server.getRooms();
         
-        rooms.get("room").joinRoom(name, uc);
+        IRoomChat rc = (IRoomChat) Naming.lookup("rmi://192.168.1.3:2020/room");
+        
+        if(rc!=null){
+            System.out.println(rooms.size());
+            rc.joinRoom(name, (IUserChat) uc);
+        }
         
     }
     
