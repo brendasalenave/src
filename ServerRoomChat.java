@@ -9,16 +9,15 @@ import java.util.logging.Logger;
 
 public class ServerRoomChat extends UnicastRemoteObject implements IServerRoomChat{
     
-        public ServerRoomChat() throws RemoteException{
-            
-        }
-    
         public TreeMap<String, IRoomChat> roomList;
+    
+        public ServerRoomChat() throws RemoteException{
+            roomList = new TreeMap<String, IRoomChat>();
+        }
     
         @Override
 	public TreeMap<String, IRoomChat> getRooms() throws RemoteException{
-		// TODO Auto-generated method stub
-		return null;
+            return roomList;
 	}
 
         @Override
@@ -37,7 +36,7 @@ public class ServerRoomChat extends UnicastRemoteObject implements IServerRoomCh
                 Logger.getLogger(ServerRoomChat.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            this.roomList.put(roomName, rc);
+            roomList.put(roomName, rc);
 	}
 
 }

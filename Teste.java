@@ -3,6 +3,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.TreeMap;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,8 +26,9 @@ public class Teste {
         IServerRoomChat server = (IServerRoomChat) Naming.lookup(urlServer);
         server.createRoom("room");
         
+        TreeMap<String, IRoomChat> rooms = server.getRooms();
         
-        
+        rooms.get("room").joinRoom(name, uc);
         
     }
     

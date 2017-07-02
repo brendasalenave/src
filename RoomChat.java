@@ -15,10 +15,11 @@ import java.util.TreeMap;
  */
 public class RoomChat extends UnicastRemoteObject implements IRoomChat{
 
-    public RoomChat() throws RemoteException{
-    }
-    
     public TreeMap<String, IUserChat> userList;
+    
+    public RoomChat() throws RemoteException{
+        userList = new TreeMap<String, IUserChat>();
+    }
     
     @Override
     public int joinRoom(String username, IUserChat localObjRef) throws RemoteException{
