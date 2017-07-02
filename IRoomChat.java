@@ -1,5 +1,6 @@
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,7 +13,7 @@ import java.rmi.Remote;
  * @author Leo
  */
 public interface IRoomChat extends Remote{
-    public int joinRoom(String username, IUserChat localObjRef);
-    public void leaveRoom(String usrName);
-    public void closeRoom();
+    public int joinRoom(String username, IUserChat localObjRef) throws RemoteException;
+    public void leaveRoom(String usrName) throws RemoteException;
+    public void closeRoom() throws RemoteException;
 }

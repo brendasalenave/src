@@ -1,4 +1,6 @@
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.TreeMap;
 
 /*
@@ -11,15 +13,18 @@ import java.util.TreeMap;
  *
  * @author Leo
  */
-public class UserChat implements IUserChat {
+public class UserChat extends UnicastRemoteObject implements IUserChat {
 
+    public UserChat() throws RemoteException{
+    }
+    
     @Override
-    public void deliverMsg(String senderUsrName, String msg, int id, Integer[] clockMatrix) {
+    public void deliverMsg(String senderUsrName, String msg, int id, Integer[] clockMatrix) throws RemoteException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updtateUserList(TreeMap<String, IUserChat> userList) {
+    public void updtateUserList(TreeMap<String, IUserChat> userList) throws RemoteException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
