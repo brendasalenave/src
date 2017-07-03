@@ -17,12 +17,12 @@ import java.rmi.registry.Registry;
 public class TesteServidor {
     
     public static void main(String[] args) throws RemoteException, AlreadyBoundException{
-        String ip = "192.168.1.3";
+        /*String ip = "192.168.1.3";
         String enderecoServidor = "rmi://"+ip+":2020/";
         int portaServidor = 2020;
         System.setProperty("java.rmi.server.hostname", ip);
         Registry reg = LocateRegistry.createRegistry(portaServidor);
         IServerRoomChat servidor = new ServerRoomChat();    
-        reg.bind("Servidor", servidor);  
+        reg.bind("Servidor", servidor);  */
     }
 }

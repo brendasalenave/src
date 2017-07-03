@@ -1,6 +1,8 @@
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeMap;
 
 /*
@@ -16,20 +18,40 @@ import java.util.TreeMap;
 public class RoomChat extends UnicastRemoteObject implements IRoomChat{
 
     public TreeMap<String, IUserChat> userList;
+    public TreeMap<String, Integer> userIds;
+    public ArrayList<Integer> freeIds = new ArrayList<Integer>();
     
     public RoomChat() throws RemoteException{
-        userList = new TreeMap<String, IUserChat>();
+        userList = new TreeMap();
+        userIds = new TreeMap();
+        for(int i=0;i<20;i++){
+            freeIds.add(i);
+        }
     }
     
     @Override
     public int joinRoom(String username, IUserChat localObjRef) throws RemoteException{
-        userList.put(username, localObjRef);
-        return userList.size(); // id do usuário
+        if(freeIds.size()>0){
+            userList.put(username, localObjRef);
+            for(Map.Entry<String, IUserChat> entry : this.userList.entrySet()) {
+                entry.getValue().updateUserList(this.userList);
+            }
+            int id = freeIds.remove(0);
+            userIds.put(username, id);
+            return id;
+        }
+        return -1;
     }
 
     @Override
     public void leaveRoom(String usrName) throws RemoteException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        userList.remove(usrName);
+        for(Map.Entry<String, IUserChat> entry : this.userList.entrySet()) {
+            entry.getValue().updateUserList(this.userList);
+        }
+        int id = userIds.remove(usrName);
+        freeIds.add(id);
+        
     }
 
     @Override
